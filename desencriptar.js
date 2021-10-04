@@ -36,7 +36,7 @@ const u={ nombre:"u", posicion: 21, multiplicidad: 2};
 const v={ nombre:"v", posicion: 22, multiplicidad: 3};
 const w={ nombre:"w", posicion: 23, multiplicidad: 3};
 const x={ nombre:"x", posicion: 24, multiplicidad: 3};
-const y={ nombre:"y", posicion: 25, multiplicidad: 3};
+const y={ nombre:"y", posicion: 25, multiplicidad: 21};
 const z={ nombre:"z", posicion: 26, multiplicidad: 3};
 const espacio={ nombre:" ", posicion: 27, multiplicidad: 5};
 
@@ -141,11 +141,12 @@ function calcular_tres(number){
     for(var i=0;i<number.length-2;i++){
         var digito=number[i]*number[i+1]*number[i+2];
     if(
-        digito%8==0||digito%75==0
+       digito%8==0||
+        (digito/75==1)
     ){
         // Esto interrumpe el bucle
     //console.log("esto NO es una palabra");
-    console.log("bug aca")
+ 
     vaciado();
     break;
     }
@@ -163,7 +164,7 @@ function calcular_cuatro(number){
     for(var i=0;i<number.length-3;i++){
         var tetradigito=number[i]*number[i+1]*number[i+2]*number[i+3]
     if(
-        tetradigito%225==0||tetradigito%81==0
+        tetradigito/225==1||tetradigito%81==0
     ){
         // Esto interrumpe el bucle
 
