@@ -25,52 +25,60 @@ const w={ nombre:"w", posicion: 22, multiplicidad: 3};
 const x={ nombre:"x", posicion: 23, multiplicidad: 3};
 const y={ nombre:"y", posicion: 24, multiplicidad: 3};
 const z={ nombre:"z", posicion: 25, multiplicidad: 3};
+const espacio={ nombre:" ", posicion: 26, multiplicidad: 5};
 
-abc=[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z];
-function analizar() {
-// El doble for es para ubicar a la letra dentro de los objetos y asignarle su posición
+abc=[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,espacio]
+
+function encriptar() {
 var texto= document.getElementById("texto").value
+// esta variable es para recoger las posiciones de cada palabra 
 var codigopalabra=[];
-for (var j=0;j<texto.length;j++){
-for(var i=0;i<abc.length;i++){
-    if(abc[i].nombre==texto[j]){
-        // con esto se forma un array sólo con las posiciones
-        codigopalabra.push(abc[i].posicion)
-
-    }
-}
-
-
-}
-/*
-console.log(codigopalabra);
-console.log(abc)
-*/
 var numeronuevapalabra=[];
 var nuevapalabra=[];
 // esta variable es la que dice cuanto van a girar las letras
 var distancia=parseInt((document.getElementById("distancia").value)); 
-
+console.log (texto)
+numerizar(texto);
 //con esta variable se arman los arrays del número modificado
 for(var h=0;h<codigopalabra.length;h++)
-{numeronuevapalabra.push(codigopalabra[h]+distancia)
+{
+    if(codigopalabra[h]==26){
+        numeronuevapalabra.push(codigopalabra[h])
+    }
+    else{
+        numeronuevapalabra.push(codigopalabra[h]+distancia)
+    }
 }
-// Ahora hay que transoformar el nuevo arreglo númerico en la nueva palabra
-for (var j=0;j<numeronuevapalabra.length;j++){
-    for(var i=0;i<abc.length;i++){
-        if(abc[i].posicion==numeronuevapalabra[j]){
-            // con esto se forma un array sólo con las posiciones
-            nuevapalabra.push(abc[i].nombre)
-          
+palabrizar(numeronuevapalabra);
+// FUNCIONES IMPORTANTES
+// La función numerizar pone en números a la palabra
+function numerizar(palabrasa){
+    for (var j=0;j<palabrasa.length;j++){
+        for(var i=0;i<abc.length;i++){
+            if(abc[i].nombre==palabrasa[j]){
+                // con esto se forma un array sólo con las posiciones
+                console.log("hola");
+                codigopalabra.push(abc[i].posicion)
+}
+    }
         }
-    }
-    
-    
-    }
-//console.log(numeronuevapalabra);
-//console.log(nuevapalabra);
+            }
+// función para transofrmar un array de posiciones en la palabra
+function palabrizar(codigo){
+    for (var j=0;j<codigo.length;j++){
+        for(var i=0;i<abc.length;i++){
+            if(abc[i].posicion==codigo[j]){
+                // con esto se forma un array sólo con las posiciones
+                nuevapalabra.push(abc[i].nombre)
+     }
+        }
+            }
+
+}
+// Es necesaria una función que transforme 
+
+// Final del proceso
 var word= nuevapalabra.join("");
-console.log (word);
 escribir();
 function escribir(){
     document.getElementById('resultado').innerHTML=word;
